@@ -1,0 +1,246 @@
+/* var */
+:root {
+    --main-color: hsl(17, 94%, 12%);
+    --txt-color : hsl(0, 0%, 33%);
+    --main-bg: hsl(0, 0%, 33%);
+    --wrapper-bg: hsl(265, 39%, 95%);
+    --tarot-back: hsl(41, 58%, 81%);
+    --tarot-back-gradient: hsl(41, 58%, 81%);
+    --tarot-back-highlight: hsl(41, 58%, 95%);
+    --tarot-shadow: hsl(0, 0%, 33%);
+    --fonts-stack-base: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+/* general */
+html, body {
+    background: var(--main-bg);
+    color: var(--txt-color);
+    font-family: var(--fonts-stack-base);
+    height: 100%;
+    margin:0;
+    padding:0;
+}
+
+body {
+    display: flex;
+}
+
+.wrapper {
+    background: var(--wrapper-bg);
+    border: 1px solid var(--main-color);
+    display:flex;
+    gap: 32px;
+    margin:auto;
+    max-width:1200px;
+    padding:32px;
+}
+
+.tarot {
+    background: var(--tarot-back);
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px var(--tarot-shadow);
+    height: 588px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    width: 312px;
+}
+
+.tarot:before {
+    background: var(--tarot-back-gradient);
+    border-radius: 12px;
+    bottom:0;
+    clip-path: polygon(0% 0%, 0% 100%, 16px 100%, 16px 16px, 296px 16px, 296px 572px, 16px 572px, 16px 100%, 100% 100%, 100% 0%);
+    content:'';
+    display: block;
+    left:0;
+    position: absolute;
+    right:0;
+    transition: all 0.4s ease;
+    top:0;
+    z-index:20;
+}
+
+.tarot:after {
+    background: linear-gradient(to bottom, transparent 0%, var(--tarot-back-highlight) 20%, transparent 100%);
+    border-radius: 12px;
+    bottom:0;
+    clip-path: polygon(0% 0%, 0% 100%, 16px 100%, 16px 16px, 296px 16px, 296px 572px, 16px 572px, 16px 100%, 100% 100%, 100% 0%);
+    content:'';
+    display: block;
+    left:0;
+    opacity: 0.6;
+    position: absolute;
+    right:0;
+    transition: all 0.4s ease;
+    top:0;
+    z-index:20;
+}
+
+.tarot img {
+    height: 533px;
+    position: absolute;
+    width:300px;
+    z-index: 15;
+}
+
+.tarot .img-sky {
+    top:12px;
+}
+
+.tarot .img-bg {
+    bottom:12px;
+}
+
+.tarot .img-name {
+    bottom: 36px;
+    height: auto;
+    left:50%;
+    transform: translateX(-50%);
+    width:250px;
+}
+
+.sky-wrapper:before {
+    background-image: url('../img/cloud1.png'), url('../img/cloud2.png'), url('../img/cloud3.png');
+    background-position: -250% 70%, -300% 75%, -250% 65%;
+    background-repeat: no-repeat;
+    bottom:0;
+    content:'';
+    display: block;
+    left:0;
+    position: absolute;
+    right:0;
+    top:0;
+    z-index: 12;
+}
+
+.sky-wrapper:after {
+    background-image: url('../img/sun.png');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 80px 80px;
+    content:'';
+    display: block;
+    height: 80px;
+    position: absolute;
+    right:64px;
+    transform-origin: 40px 40px;
+    top:32px;
+    width:80px;
+    z-index: 12;
+}
+
+.sky-wrapper img {
+    z-index:10;
+}
+
+@keyframes animatedCloud {
+	from { background-position: -250% 70%, -300% 72%, -230% 65%; }
+	to { background-position: 280% 70%, 180% 72%, 190% 65%; }
+}
+
+@keyframes animatedSun {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+@keyframes animatedLeftArm {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(0.5deg); }
+}
+
+@keyframes animatedLeftArm {
+	0% { transform: rotate(0deg) translateZ(2px); }
+	50% { transform: rotate(0.5deg) translateZ(2px); }
+    100% { transform: rotate(0deg) translateZ(2px); }
+}
+
+@keyframes animatedRightArm {
+	0% { transform: rotate(0deg) translateZ(20px); }
+	50% { transform: rotate(-0.5deg) translateZ(20px); }
+    100% { transform: rotate(0deg) translateZ(20px); }
+}
+
+@keyframes animatedHead {
+	0% { transform: rotate(0deg) translateZ(12px); }
+	50% { transform: rotate(-0.5deg) translateZ(12px); }
+    100% { transform: rotate(0deg) translateZ(12px); }
+}
+
+/* frame break */
+.frame-break:before {
+    --tarot-back-gradient: hsl(149, 45%, 47%);
+}
+
+.frame-break > img {
+    z-index: 30;
+}
+
+.frame-break .img-bg, .frame-break .img-sky {
+    z-index:10;
+}
+
+/* 3d effect */
+.threed-effect:before {
+    --tarot-back-gradient: hsl(214, 100%, 62%);
+}
+
+.threed-effect .img-flower, .threed-effect .img-leftArm {
+    transform: translateZ(2px);
+}
+
+.threed-effect .img-body, .threed-effect .img-legs {
+    transform: translateZ(4px);
+}
+
+.threed-effect .img-head, .threed-effect .img-table {
+    transform: translateZ(12px);
+}
+
+.threed-effect .img-rightArm{
+    transform: translateZ(20px);
+}
+
+.threed-effect .img-name {
+    transform: translateZ(20px) translateX(-50%);
+}
+
+/* animated effect */
+.animated-effect:before{
+    --tarot-back-gradient: hsl(293, 100%, 62%);
+}
+
+.animated-effect .sky-wrapper:before {
+    animation: animatedCloud 24s linear infinite;
+}
+
+.animated-effect .sky-wrapper:after {
+    animation: animatedSun 32s linear infinite;
+}
+
+.animated-effect .img-leftArm {
+    animation: animatedLeftArm 5s ease infinite;
+}
+
+.animated-effect .img-rightArm {
+    animation: animatedRightArm 3s ease infinite;
+}
+
+.animated-effect .img-head {
+    animation: animatedHead 4s ease infinite;
+}
+
+/* shiny logo */
+.shiny-logo:before {
+    --tarot-back-gradient: hsl(26, 100%, 50%);
+}
+
+/* animated frame */
+.animated-frame:before {
+    --tarot-back-gradient: hsl(332, 100%, 67%);
+}
+
+/* infinity */
+.infinity:before {
+    --tarot-back-gradient: hsl(249, 100%, 66%);
+}
