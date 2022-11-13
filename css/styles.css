@@ -62,7 +62,7 @@ body {
 }
 
 .tarot:after {
-    background: linear-gradient(to bottom, transparent 0%, var(--tarot-back-highlight) 20%, transparent 100%);
+    background: linear-gradient(to bottom, transparent 0%, var(--tarot-back-highlight) 20%, transparent 75%, var(--tarot-back-highlight) 95%, transparent 100%);
     border-radius: 12px;
     bottom:0;
     clip-path: polygon(0% 0%, 0% 100%, 16px 100%, 16px 16px, 296px 16px, 296px 572px, 16px 572px, 16px 100%, 100% 100%, 100% 0%);
@@ -167,6 +167,11 @@ body {
     100% { transform: rotate(0deg) translateZ(12px); }
 }
 
+@keyframes animatedName {
+	from { background-position: -200% 0; }
+	to { background-position: 350% 0; }
+}
+
 /* frame break */
 .frame-break:before {
     --tarot-back-gradient: hsl(149, 45%, 47%);
@@ -235,12 +240,32 @@ body {
     --tarot-back-gradient: hsl(26, 100%, 50%);
 }
 
+.shiny-logo .shiny-wrapper {
+    animation: animatedName 22s linear infinite;
+    background-image: url('../img/shiny.png');
+    background-position: -100% 0;
+    background-repeat: no-repeat;
+    bottom: 37px;
+    height: 37px;
+    left:49%;
+    /*mix-blend-mode: overlay; conflict with 3D effect */
+    opacity: 0.4;
+    position: absolute;
+    transform: translateX(-50%) translateZ(20px);
+    width:165px;
+    z-index:30;
+}
+
 /* animated frame */
 .animated-frame:before {
     --tarot-back-gradient: hsl(332, 100%, 67%);
+    content:url('../img/infinityPxl.png');
+    filter: url(#ultraEffect);
 }
 
 /* infinity */
 .infinity:before {
-    --tarot-back-gradient: hsl(249, 100%, 66%);
+    --tarot-back-gradient: #6c52ff;
+    content:url('../img/infinityPxl.png');
+    filter: url(#infinityEffect);
 }
