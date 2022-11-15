@@ -6,7 +6,8 @@
     --wrapper-bg: hsl(265, 39%, 95%);
     --tarot-back: hsl(41, 58%, 81%);
     --tarot-back-gradient: hsl(41, 58%, 81%);
-    --tarot-back-highlight: hsl(41, 58%, 95%);
+    --tarot-back-highlight: hsla(41, 58%, 95%, 0.6);
+    --tarot-back-dark: hsl(41, 58%, 31%);
     --tarot-shadow: hsl(0, 0%, 33%);
     --fonts-stack-base: "Montserrat", Arial, Helvetica, sans-serif;
 }
@@ -62,14 +63,16 @@ body {
 }
 
 .tarot:after {
-    background: linear-gradient(to bottom, transparent 0%, var(--tarot-back-highlight) 20%, transparent 75%, var(--tarot-back-highlight) 95%, transparent 100%);
+    background-image: linear-gradient(var(--tarot-back-dark) 0 100%), linear-gradient(to right, var(--tarot-back-highlight) 0 2px, transparent 4px 100%), linear-gradient(to bottom, var(--tarot-back-highlight) 0 2px, transparent 4px 100%), linear-gradient(to bottom, transparent 0%, var(--tarot-back-highlight) 20%, transparent 75%, var(--tarot-back-highlight) 95%, transparent 100%);
+    background-position: 13px 13px, 0 2px, 5px 0, 0 0;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-size: 286px 562px, 100% 100%, 100% 100%, 100% 100%;
     border-radius: 12px;
     bottom:0;
     clip-path: polygon(0% 0%, 0% 100%, 16px 100%, 16px 16px, 296px 16px, 296px 572px, 16px 572px, 16px 100%, 100% 100%, 100% 0%);
     content:'';
     display: block;
     left:0;
-    opacity: 0.6;
     position: absolute;
     right:0;
     transition: all 0.4s ease;
@@ -134,6 +137,66 @@ body {
     z-index:10;
 }
 
+@keyframes animatedName {
+	from { background-position: -200% 0; }
+	to { background-position: 350% 0; }
+}
+
+/* frame break */
+.frame-break:before {
+    --tarot-back-gradient: hsl(149, 45%, 47%);
+}
+
+.frame-break:after {
+    --tarot-back-dark: hsl(149, 45%, 27%);
+}
+
+.frame-break > img {
+    z-index: 30;
+}
+
+.frame-break .img-bg, .frame-break .img-sky {
+    z-index:10;
+}
+
+/* 3d effect */
+.threed-effect:before {
+    --tarot-back-gradient: hsl(214, 100%, 62%);
+}
+
+.threed-effect:after {
+    --tarot-back-dark: hsl(214, 100%, 32%);
+}
+
+.threed-effect .img-flower, .threed-effect .img-leftArm {
+    transform: translateZ(2px);
+}
+
+.threed-effect .img-body, .threed-effect .img-legs {
+    transform: translateZ(4px);
+}
+
+.threed-effect .img-head, .threed-effect .img-table {
+    transform: translateZ(12px);
+}
+
+.threed-effect .img-rightArm{
+    transform: translateZ(20px);
+}
+
+.threed-effect .img-name {
+    transform: translateZ(20px) translateX(-50%);
+}
+
+/* animated effect */
+.animated-effect:before{
+    --tarot-back-gradient: hsl(293, 100%, 62%);
+}
+
+.animated-effect:after {
+    --tarot-back-dark: hsl(293, 100%, 32%);
+}
+
 @keyframes animatedCloud {
 	from { background-position: -250% 70%, -300% 72%, -230% 65%; }
 	to { background-position: 280% 70%, 180% 72%, 190% 65%; }
@@ -167,53 +230,24 @@ body {
     100% { transform: rotate(0deg) translateZ(12px); }
 }
 
-@keyframes animatedName {
-	from { background-position: -200% 0; }
-	to { background-position: 350% 0; }
+@keyframes animatedLeftArm2 {
+	0% { transform: rotate(0deg); }
+	50% { transform: rotate(0.5deg); }
+    100% { transform: rotate(0deg); }
 }
 
-/* frame break */
-.frame-break:before {
-    --tarot-back-gradient: hsl(149, 45%, 47%);
+@keyframes animatedRightArm2 {
+	0% { transform: rotate(0deg); }
+	50% { transform: rotate(-0.5deg); }
+    100% { transform: rotate(0deg); }
 }
 
-.frame-break > img {
-    z-index: 30;
+@keyframes animatedHead2 {
+	0% { transform: rotate(0deg); }
+	50% { transform: rotate(-0.5deg); }
+    100% { transform: rotate(0deg); }
 }
 
-.frame-break .img-bg, .frame-break .img-sky {
-    z-index:10;
-}
-
-/* 3d effect */
-.threed-effect:before {
-    --tarot-back-gradient: hsl(214, 100%, 62%);
-}
-
-.threed-effect .img-flower, .threed-effect .img-leftArm {
-    transform: translateZ(2px);
-}
-
-.threed-effect .img-body, .threed-effect .img-legs {
-    transform: translateZ(4px);
-}
-
-.threed-effect .img-head, .threed-effect .img-table {
-    transform: translateZ(12px);
-}
-
-.threed-effect .img-rightArm{
-    transform: translateZ(20px);
-}
-
-.threed-effect .img-name {
-    transform: translateZ(20px) translateX(-50%);
-}
-
-/* animated effect */
-.animated-effect:before{
-    --tarot-back-gradient: hsl(293, 100%, 62%);
-}
 
 .animated-effect .sky-wrapper:before {
     animation: animatedCloud 24s linear infinite;
@@ -224,20 +258,36 @@ body {
 }
 
 .animated-effect .img-leftArm {
+    animation: animatedLeftArm2 5s ease infinite;
+}
+
+.animated-effect.threed-effect .img-leftArm {
     animation: animatedLeftArm 5s ease infinite;
 }
 
 .animated-effect .img-rightArm {
+    animation: animatedRightArm2 3s ease infinite;
+}
+
+.animated-effect.threed-effect .img-rightArm {
     animation: animatedRightArm 3s ease infinite;
 }
 
 .animated-effect .img-head {
+    animation: animatedHead2 4s ease infinite;
+}
+
+.animated-effect.threed-effect .img-head {
     animation: animatedHead 4s ease infinite;
 }
 
 /* shiny logo */
 .shiny-logo:before {
     --tarot-back-gradient: hsl(26, 100%, 50%);
+}
+
+.shiny-logo:after {
+    --tarot-back-dark: hsl(26, 100%, 30%);
 }
 
 .shiny-logo .shiny-wrapper {
@@ -251,9 +301,13 @@ body {
     /*mix-blend-mode: overlay; conflict with 3D effect */
     opacity: 0.4;
     position: absolute;
-    transform: translateX(-50%) translateZ(20px);
+    transform: translateX(-50%);
     width:165px;
     z-index:30;
+}
+
+.shiny-logo.threed-effect .shiny-wrapper {
+    transform: translateX(-50%) translateZ(20px);
 }
 
 /* animated frame */
@@ -263,9 +317,17 @@ body {
     filter: url(#ultraEffect);
 }
 
+.animated-frame:after {
+    --tarot-back-dark: hsl(332, 100%, 57%);
+}
+
 /* infinity */
 .infinity:before {
-    --tarot-back-gradient: #6c52ff;
+    --tarot-back-gradient: hsl(249, 100%, 66%);
     content:url('../img/infinityPxl.png');
     filter: url(#infinityEffect);
+}
+
+.infinity:after {
+    --tarot-back-dark: hsl(249, 100%, 56%);
 }
