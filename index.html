@@ -14,18 +14,21 @@
 <body>
     <div class="wrapper">
         <div class="presentation">
-            <h1>Le Bateleur - Snap version</h1>
-            <ul>
-                <li><label for="frame-break">Frame Break : </label><input type="checkbox" name="" id="frame-break"></li>
-                <li><label for="3d-effect">3D effect : </label><input type="checkbox" name="" id="threed-effect"></li>
-                <li><label for="animated-effect">Animated effect : </label><input type="checkbox" name="" id="animated-effect"></li>
-                <li><label for="shiny-logo">Shiny Logo : </span><input type="checkbox" name="" id="shiny-logo"></li>
-                <li><label for="animated-frame">Animated frame : </label><input type="checkbox" name="" id="animated-frame"></li>
-                <li><label for="infinity">Infinity : </label><input type="checkbox" name="" id="infinity"></li>
-                <li><label for="movable">Movable : </span><input type="checkbox" name="" id="movable" checked="checked"></li>
-            </ul>
-
-            <p>References : Tarot image by Oswald Wirth (1889) from The Juggler and The Sun - <a href="https://micku7zu.github.io/vanilla-tilt.js/">Vanilla-tilt.js</a> for the 3D tilt effect.</p>
+            <main>
+                <h1>Le Bateleur - Snap version</h1>
+                <ul>
+                    <li><label for="frame-break">Frame Break : </label><input type="checkbox" name="" id="frame-break"></li>
+                    <li><label for="3d-effect">3D effect : </label><input type="checkbox" name="" id="threed-effect"></li>
+                    <li><label for="animated-effect">Animated effect : </label><input type="checkbox" name="" id="animated-effect"></li>
+                    <li><label for="shiny-logo">Shiny Logo : </span><input type="checkbox" name="" id="shiny-logo"></li>
+                    <li><label for="animated-frame">Animated frame : </label><input type="checkbox" name="" id="animated-frame"></li>
+                    <li><label for="infinity">Infinity : </label><input type="checkbox" name="" id="infinity"></li>
+                    <li><label for="movable">Movable : </span><input type="checkbox" name="" id="movable" checked="checked"></li>
+                </ul>
+            </main>
+            <footer>
+                <p><strong>References :</strong> Tarot image by Oswald Wirth (1889) from The Juggler and The Sun - <a href="https://micku7zu.github.io/vanilla-tilt.js/">Vanilla-tilt.js</a> for the 3D tilt effect.</p>
+            </footer>
 
             <div class="box">
                 <div class="inner"></div>
@@ -49,14 +52,13 @@
         </div>
     </div>
 
-    <svg x="0px" y="0px" width="10px" height="10px" viewbox="0 0 800 500" style="position;absolute;">
+    <svg x="0px" y="0px" width="10px" height="10px" viewbox="0 0 800 500" style="position:absolute;">
         <filter id="ultraEffect" color-interpolation-filters="sRGB" x="0%" y="0%" height="100%" width="100%">
             <feTurbulence type="fractalNoise" result="cloudbase" baseFrequency=".03" numOctaves="2" seed="2"/>
-        
+
             <feColorMatrix in="cloudbase" type="hueRotate" values="0" result="cloud">
                 <animate attributeName="values" from="0" to="360" dur="5s" repeatCount="indefinite"/>
             </feColorMatrix>
-        
         
             <feColorMatrix in="cloud" result="wispy" type="matrix" 
                                         values="6 0 0 0 -1
@@ -76,7 +78,7 @@
         </filter>  
     </svg>
 
-    <svg x="0px" y="0px" width="10px" height="10px" viewbox="0 0 800 500" style="position;absolute;">
+    <svg x="0px" y="0px" width="10px" height="10px" viewbox="0 0 800 500" style="position:absolute;">
         <filter id="infinityEffect" color-interpolation-filters="sRGB" x="0%" y="0%" height="100%" width="100%">
             <feTurbulence type="fractalNoise" result="cloudbase" baseFrequency=".03" numOctaves="2" seed="2"/>
         

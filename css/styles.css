@@ -9,7 +9,10 @@
     --tarot-back-highlight: hsla(41, 58%, 95%, 0.6);
     --tarot-back-dark: hsl(41, 58%, 31%);
     --tarot-shadow: hsl(0, 0%, 33%);
-    --fonts-stack-base: "Montserrat", Arial, Helvetica, sans-serif;
+    --tarot-height: 588px;
+    --tarot-width: 312px;
+    --tarot-margin: 12px;
+    --fonts-stack-base: Arial, Helvetica, sans-serif;
 }
 
 /* general */
@@ -29,29 +32,41 @@ body {
 .wrapper {
     background: var(--wrapper-bg);
     border: 1px solid var(--main-color);
+    border-radius: 20px;
     display:flex;
     gap: 32px;
     margin:auto;
-    max-width:1200px;
+    max-width:1000px;
     padding:32px;
+}
+
+.wrapper > * {
+    flex: 1;
+}
+
+.presentation {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr auto;
 }
 
 .tarot {
     background: var(--tarot-back);
     border-radius: 12px;
     box-shadow: 2px 2px 8px var(--tarot-shadow);
-    height: 588px;
+    height: var(--tarot-height);
+    margin: 0 auto;
     position: relative;
     transform-style: preserve-3d;
     transform: perspective(1000px);
-    width: 312px;
+    width: var(--tarot-width);
 }
 
 .tarot:before {
     background: var(--tarot-back-gradient);
     border-radius: 12px;
     bottom:0;
-    clip-path: polygon(0% 0%, 0% 100%, 16px 100%, 16px 16px, 296px 16px, 296px 572px, 16px 572px, 16px 100%, 100% 100%, 100% 0%);
+    clip-path: polygon(0% 0%, 0% 100%, calc(var(--tarot-margin) + 4px) 100%, calc(var(--tarot-margin) + 4px) calc(var(--tarot-margin) + 4px), calc(var(--tarot-width) - (var(--tarot-margin) + 4px)) calc(var(--tarot-margin) + 4px), calc(var(--tarot-width) - (var(--tarot-margin) + 4px)) calc(var(--tarot-height) - (var(--tarot-margin) + 4px) ), calc(var(--tarot-margin) + 4px) calc(var(--tarot-height) - (var(--tarot-margin) + 4px) ), calc(var(--tarot-margin) + 4px) 100%, 100% 100%, 100% 0%);
     content:'';
     display: block;
     left:0;
@@ -66,10 +81,10 @@ body {
     background-image: linear-gradient(var(--tarot-back-dark) 0 100%), linear-gradient(to right, var(--tarot-back-highlight) 0 2px, transparent 4px 100%), linear-gradient(to bottom, var(--tarot-back-highlight) 0 2px, transparent 4px 100%), linear-gradient(to bottom, transparent 0%, var(--tarot-back-highlight) 20%, transparent 75%, var(--tarot-back-highlight) 95%, transparent 100%);
     background-position: 13px 13px, 0 2px, 5px 0, 0 0;
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-    background-size: 286px 562px, 100% 100%, 100% 100%, 100% 100%;
+    background-size: calc(var(--tarot-width) - 26px) calc(var(--tarot-height) - 26px), 100% 100%, 100% 100%, 100% 100%;
     border-radius: 12px;
     bottom:0;
-    clip-path: polygon(0% 0%, 0% 100%, 16px 100%, 16px 16px, 296px 16px, 296px 572px, 16px 572px, 16px 100%, 100% 100%, 100% 0%);
+    clip-path: polygon(0% 0%, 0% 100%, calc(var(--tarot-margin) + 4px) 100%, calc(var(--tarot-margin) + 4px) calc(var(--tarot-margin) + 4px), calc(var(--tarot-width) - (var(--tarot-margin) + 4px)) calc(var(--tarot-margin) + 4px), calc(var(--tarot-width) - (var(--tarot-margin) + 4px)) calc(var(--tarot-height) - (var(--tarot-margin) + 4px) ), calc(var(--tarot-margin) + 4px) calc(var(--tarot-height) - (var(--tarot-margin) + 4px) ), calc(var(--tarot-margin) + 4px) 100%, 100% 100%, 100% 0%);
     content:'';
     display: block;
     left:0;
@@ -81,24 +96,25 @@ body {
 }
 
 .tarot img {
-    height: 533px;
+    height: calc( var(--tarot-height) - 24px);
     position: absolute;
-    width:300px;
+    width:calc( var(--tarot-width) - 12px);
     z-index: 15;
 }
 
 .tarot .img-sky {
-    top:12px;
+    top:var(--tarot-margin);
 }
 
 .tarot .img-bg {
-    bottom:12px;
+    bottom:var(--tarot-margin);
 }
 
 .tarot .img-name {
     bottom: 36px;
     height: auto;
     left:50%;
+    max-width:80%;
     transform: translateX(-50%);
     width:250px;
 }
@@ -298,7 +314,7 @@ body {
     bottom: 37px;
     height: 37px;
     left:49%;
-    /*mix-blend-mode: overlay; conflict with 3D effect */
+    max-width:80%;
     opacity: 0.4;
     position: absolute;
     transform: translateX(-50%);
@@ -330,4 +346,23 @@ body {
 
 .infinity:after {
     --tarot-back-dark: hsl(249, 100%, 56%);
+}
+
+/* responsive */
+@media screen and (max-width:600px) {
+    .tarot {
+        --tarot-height: 471px;
+        --tarot-width: 250px;
+    }
+    
+    .shiny-logo .shiny-wrapper {
+        height: 30px;
+        width: 134px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .wrapper {
+        flex-direction: column-reverse;
+    }
 }
